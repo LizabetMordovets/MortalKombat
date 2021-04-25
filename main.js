@@ -3,48 +3,12 @@ const $formFight = document.querySelector('.control');
 
 
 import {player1, player2} from './players.js';
-import {changeHP, renderHP} from './players.js';
 import {createElement} from './utils.js';
 import {showResult, playerWin} from './utils.js';
 import {enemyAttak, playerAttack} from './attack.js';
 import {generateLogs} from './generateLogs.js';
+import Game from '../Game/index.js';
 
-
-const  startLog = () => {
-    generateLogs('start', player2, player1, 0);
-}
-window.onload = startLog;
-
-
-const  creatPlayer = (obj) => {
-
-    const $player = createElement('div', 'player'+obj.player);
-
-    const $progressbar = createElement('div', 'progressbar');
-
-    const $life = createElement('div', 'life');
-    $life.style.width = `${obj.hp}%`;
-
-    const $name = createElement('div', 'name');
-    $name.innerText = obj.name;
-
-    const $character  = createElement('div', 'character');
-
-    const $img = createElement('img');
-    $img.src = obj.img;
-
-
-    $player.appendChild($progressbar);
-    $progressbar.appendChild($life);
-    $progressbar.appendChild($name);
-    $player.appendChild($character);
-    $character.appendChild($img);
-
-   return $player;
-};
-
-$arenas.appendChild(creatPlayer(player1));
-$arenas.appendChild(creatPlayer(player2));
 
 
 
@@ -73,7 +37,19 @@ $formFight.addEventListener('submit', function(e){
         generateLogs('defence', player1, player2, enemy.value);
     }
     showResult();
-    console.log('Skorpion', player1.hp);
-    console.log('Super-ZEREO',player2.hp);
-    
+
 });
+
+
+
+/*function init(){
+    player1.creatPlayer();
+    player2.creatPlayer();
+
+    generateLogs('start', player2, player1, 0);
+   };
+   
+init();*/
+
+const game = new Game();
+game.start();
