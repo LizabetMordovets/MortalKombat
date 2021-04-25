@@ -41,7 +41,7 @@ export const  generateLogs = (type, player1, player2, hitValue) => {
 
     case 'defence':
         ranNum = getRandom(logs.defence.length-1);
-        text = logs.end[ranNum]
+        text = logs.defence[ranNum]
             .replace('[playerDefence]', player2.name)
             .replace('[playerKick]', namePlayer1);
             el = `<p>${time}, ${text}</p>`;
